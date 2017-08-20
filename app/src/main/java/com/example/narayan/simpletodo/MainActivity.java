@@ -1,42 +1,47 @@
 package com.example.narayan.simpletodo;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-    final String dataFileName="toDo_ItemsData.txt";
-    ArrayList<String> toDoList;
-    ArrayAdapter<String> toDoAdapter;
-    ListView lvItems;
-    EditText etEditText;
+import database.Item;
+import database.ItemsDatabaseHelper;
+
+public class MainActivity extends AppCompatActivity implements ItemDialogFragment.EditItemDialogListener {
+    private final String dataFileName="toDo_ItemsData.txt";
+    private ArrayList<Item> toDoList;
+    private ToDoListArrayAdapter toDoAdapter;
+    private ListView lvItems;
+    private EditText etEditText;
+    protected ItemsDatabaseHelper dbInstance;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        populateItems();
+        // Initialize objects and variables
         lvItems=(ListView)findViewById(R.id.lvItems);
         etEditText=(EditText)findViewById(R.id.etEditText);
+        dbInstance=ItemsDatabaseHelper.getInstance(this);
+        populateItems();
+        // Attach listeners and other set up tasks
         lvItems.setAdapter(toDoAdapter);
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                toDoList.remove(position);
+                /*Item removedItem= toDoList.remove(position);
+                dbInstance.deleteItem(removedItem);
                 toDoAdapter.notifyDataSetChanged();
-                write_items();
+                return true;*/
+                showEditDailog(toDoList.get(position));
                 return true;
             }
         });
@@ -47,20 +52,31 @@ public class MainActivity extends AppCompatActivity {
      */
     private void read_items()
     {
+
+        toDoList= (ArrayList)dbInstance.getAllItems();
+
+        /*ArrayList<String> itemNames;
         File filesDir= getFilesDir();
         File dataFile= new File(filesDir,dataFileName);
         try {
-            toDoList=new ArrayList<String>(FileUtils.readLines(dataFile));
+            itemNames=new ArrayList<String>(FileUtils.readLines(dataFile));
+            toDoList=new ArrayList<Item>();
+            for (String s: itemNames){
+                Item i=new Item();
+                i.setName(s);
+                toDoList.add(i);
+            }
         } catch (IOException e) {
-            toDoList=new ArrayList<String>();//intialize to empty ArrayList
-        }
+            toDoList=new ArrayList<Item>();//intialize to empty ArrayList
+        }*/
+
     }
     /*
      * Saves the modified data to the file
      */
-    private void write_items()
+ /*   private void write_items()
     {
-        File filesDir= getFilesDir();
+       /* File filesDir= getFilesDir();
         File dataFile= new File(filesDir,dataFileName);
         try {
             FileUtils.writeLines(dataFile,toDoList);
@@ -68,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             //TODO:handle exception here
         }
 
-    }
+    }*/
     /*
     * Instantiate the ToDOArrayList and Adapter
     * Populates the list with previously saved values
@@ -76,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     protected void populateItems()
     {
         read_items();
-        toDoAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,toDoList);
+        toDoAdapter= new ToDoListArrayAdapter(this,toDoList);
     }
 
     /*
@@ -85,8 +101,34 @@ public class MainActivity extends AppCompatActivity {
     */
     public void addToDoItem(View view)
     {
-       toDoAdapter.add(etEditText.getText().toString());
+        Item newItem= new Item();
+        newItem.setName(etEditText.getText().toString());
+        toDoAdapter.add(newItem);
+        dbInstance.addItem(newItem);
         etEditText.setText("");
-        write_items();
+       // write_items();
+    }
+
+    public void showEditDailog(Item item)
+    {
+        FragmentManager fm = getSupportFragmentManager();
+        ItemDialogFragment frag= ItemDialogFragment.newInstance("EDIT ITEM", item);
+        frag.show(fm,"fragment_edit_item");
+    }
+    @Override
+    public void updateItem(Item upItem, Item oldItem)
+    {
+        dbInstance.updateItem(upItem,oldItem);
+        int index=toDoList.indexOf(oldItem);
+        toDoList.set(index,upItem);
+        toDoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void deleteItem(Item item)
+    {
+        toDoList.remove(item);
+        dbInstance.deleteItem(item);
+        toDoAdapter.notifyDataSetChanged();
     }
 }
