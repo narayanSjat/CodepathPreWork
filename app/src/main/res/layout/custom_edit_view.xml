@@ -19,7 +19,7 @@
     <EditText
         android:id="@+id/nameText"
         style="@style/inputText"
-        android:text="Name"
+        android:text=""
         android:layout_below="@+id/nameLabel"
 
         />

@@ -1,5 +1,6 @@
 package com.example.narayan.simpletodo;
 
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -59,9 +61,7 @@ public class MainActivity extends AppCompatActivity implements ItemEditListener 
      */
     private void read_items()
     {
-
         toDoList= (ArrayList)dbInstance.getAllItems();
-
     }
 
     /*
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements ItemEditListener 
         read_items();
         toDoAdapter= new ToDoListArrayAdapter(this,toDoList);
     }
+
 
 
     public void showEditDailog(Item item, ItemDialogFragment.MODE mode)
@@ -88,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements ItemEditListener 
         if (item.getItemId()==R.id.addNewItem)
         {
             Item newItem=new Item();
-            newItem.setName("DUMMY");
             showEditDailog(newItem, ItemDialogFragment.MODE.ADD);
         }
         return true;
@@ -110,6 +110,11 @@ public class MainActivity extends AppCompatActivity implements ItemEditListener 
         else
         {
             toDoAdapter.add(item);
+            int viewPriority=item.getPriority();
+            if (item.getComplete()){viewPriority=-1;}
+            int pos =toDoAdapter.getPosition(item);
+            ImageView imgView=(ImageView)lvItems.getChildAt(pos).findViewById(R.id.itemStatus);
+            imgView.setImageResource(getResStatusImage(viewPriority));
         }
     }
 
@@ -125,7 +130,13 @@ public class MainActivity extends AppCompatActivity implements ItemEditListener 
         {
             int index=toDoList.indexOf(oldItem);
             toDoList.set(index,upItem);
+            int viewPriority=upItem.getPriority();
+            if (upItem.getComplete()){viewPriority=-1;}
             toDoAdapter.notifyDataSetChanged();
+            int pos =toDoAdapter.getPosition(upItem);
+            ImageView imgView=(ImageView)lvItems.getChildAt(pos).findViewById(R.id.itemStatus);
+            imgView.setImageResource(getResStatusImage(viewPriority));
+
         }
 
     }
@@ -136,5 +147,22 @@ public class MainActivity extends AppCompatActivity implements ItemEditListener 
         toDoList.remove(item);
         dbInstance.deleteItem(item);
         toDoAdapter.notifyDataSetChanged();
+    }
+
+    /*
+    * Returns Image resource id based on priority
+     */
+    @DrawableRes int getResStatusImage(int priority)
+    {
+        switch (priority){
+            case 0:
+                return R.drawable.icons_low_priority;
+            case 1:
+                return R.drawable.icon_med_priority;
+            case 2:
+                return R.drawable.icon_high_priority;
+            default:
+                return R.drawable.icons_done;
+        }
     }
 }

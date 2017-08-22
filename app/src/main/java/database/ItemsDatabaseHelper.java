@@ -19,15 +19,20 @@ import static android.content.ContentValues.TAG;
 public class ItemsDatabaseHelper extends SQLiteOpenHelper{
 
     private static ItemsDatabaseHelper sInstance; // Maintain one instance of the database class
-    private static final String DATABASE_NAME = "toToListDatabase";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "toToListDatabase2test";
+    private static final int DATABASE_VERSION = 4;
 
     // Table Names
-    private static final String TABLE_ITEMS = "ItemsTable";
+    private static final String TABLE_ITEMS = "ItemsTabletest";
 
     // Item Table Columns
     private static final String KEY_ITEM_ID = "itemId";
     private static final String KEY_ITEM_NAME = "itemName";
+    private static final String KEY_ITEM_MEMO = "itemMemo";
+    private static final String KEY_ITEM_DATE = "itemDate";
+    private static final String KEY_ITEM_TIME = "itemTime";
+    private static final String KEY_ITEM_PRIORITY = "itemPriority";
+    private static final String KEY_ITEM_STATUS = "itemStatus";
 
 
     public static synchronized ItemsDatabaseHelper getInstance(Context context) {
@@ -50,8 +55,13 @@ public class ItemsDatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS +
                 "(" +
-                KEY_ITEM_ID + " INTEGER PRIMARY KEY," + // Define a primary key
-                KEY_ITEM_NAME + " TEXT" +
+                KEY_ITEM_ID + " INTEGER PRIMARY KEY, " + // Define a primary key
+                KEY_ITEM_NAME + " TEXT," +
+                KEY_ITEM_DATE + " TEXT," +
+                KEY_ITEM_TIME + " TEXT," +
+                KEY_ITEM_MEMO + " TEXT,"  +
+                KEY_ITEM_PRIORITY +" INTEGER," +
+                KEY_ITEM_STATUS + " BOOLEAN" +
                 ")";
         db.execSQL(CREATE_ITEMS_TABLE);
     }
@@ -82,6 +92,11 @@ public class ItemsDatabaseHelper extends SQLiteOpenHelper{
         try{
             ContentValues values = new ContentValues();
             values.put(KEY_ITEM_NAME, newItem.getName());
+            values.put(KEY_ITEM_DATE, newItem.getDate());
+            values.put(KEY_ITEM_TIME, newItem.getTime());
+            values.put(KEY_ITEM_MEMO, newItem.getMemo());
+            //values.put(KEY_ITEM_PRIORITY, newItem.getPriority());
+            //values.put(KEY_ITEM_STATUS, newItem.getComplete());
             String usersSelectQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
                     KEY_ITEM_ID, TABLE_ITEMS, KEY_ITEM_NAME);
             cursor=db.rawQuery(usersSelectQuery,new String[]{newItem.getName()});
@@ -124,6 +139,11 @@ public class ItemsDatabaseHelper extends SQLiteOpenHelper{
         try{
             ContentValues values = new ContentValues();
             values.put(KEY_ITEM_NAME, newItem.getName());
+            values.put(KEY_ITEM_DATE, newItem.getDate());
+            values.put(KEY_ITEM_TIME, newItem.getTime());
+            values.put(KEY_ITEM_MEMO, newItem.getMemo());
+            values.put(KEY_ITEM_PRIORITY, newItem.getPriority());
+            values.put(KEY_ITEM_STATUS, newItem.getComplete());
             itemId=db.update(TABLE_ITEMS,values,KEY_ITEM_NAME+ " = ?",new String[]{oldItem.getName()});
             db.setTransactionSuccessful();
         }catch(Exception e)
@@ -153,6 +173,11 @@ public class ItemsDatabaseHelper extends SQLiteOpenHelper{
                 {
                     Item item=new Item();
                     item.setName(cursor.getString(cursor.getColumnIndex(KEY_ITEM_NAME)));
+                    item.setTime(cursor.getString(cursor.getColumnIndex(KEY_ITEM_TIME)));
+                    item.setDate(cursor.getString(cursor.getColumnIndex(KEY_ITEM_DATE)));
+                    item.setMemo(cursor.getString(cursor.getColumnIndex(KEY_ITEM_MEMO)));
+                    item.setPriority(cursor.getInt(cursor.getColumnIndex(KEY_ITEM_PRIORITY)));
+                    item.setComplete(cursor.getInt(cursor.getColumnIndex(KEY_ITEM_STATUS))>0);
                     toDoList.add(item);
                 }while (cursor.moveToNext());
             }
