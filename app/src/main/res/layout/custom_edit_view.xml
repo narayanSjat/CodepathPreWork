@@ -3,52 +3,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include
+        layout="@layout/toolbar_frag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frag_toolbar" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="13dp"
+        android:id="@+id/nameLabel"
         android:text="Name"
-        android:textAllCaps="true"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="visible" />
+        style="@style/labelText"
+        android:layout_below="@+id/frag_toolbar"
+         />
 
     <EditText
-        android:id="@+id/editItemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_alignBaseline="@+id/textView"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:id="@+id/nameText"
+        style="@style/inputText"
+        android:text="Name"
+        android:layout_below="@+id/nameLabel"
 
-    <Button
-        android:id="@+id/saveEdits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="Save"
-        android:layout_below="@+id/editItemName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        />
 
-    <Button
-        android:id="@+id/deleteItem"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/dateLabel"
+        style="@style/labelText"
+        android:layout_below="@+id/nameText"
+        android:text="Date (dd/mm/yyyy)" />
+
+    <TextView
+        android:id="@+id/dateText"
+        style="@style/inputText"
+        android:text="Date"
+        android:layout_below="@+id/dateLabel"
+
+        />
+    <TextView
+        android:id="@+id/timeLabel"
+        android:text="Time"
+        style="@style/labelText"
+        android:layout_below="@+id/dateText"
+        />
+
+    <TextView
+        android:id="@+id/timeText"
+        style="@style/inputText"
+        android:text="Time"
+        android:layout_below="@+id/timeLabel"
+
+        />
+
+    <TextView
+        android:id="@+id/priorityLabel"
+        android:text="Priority"
+        style="@style/labelText"
+        android:layout_below="@+id/timeText"
+        />
+
+    <RadioGroup
+        android:id="@+id/radioPriority"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/saveEdits"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
-        android:layout_toEndOf="@+id/editItemName"
-        android:layout_toRightOf="@+id/editItemName"
-        android:text="DELETE" />
+        android:layout_below="@+id/priorityLabel"
+        android:orientation='horizontal'>
+
+        <RadioButton
+            android:id="@+id/radioLow"
+            style="@style/radioButton"
+            android:checked="true"
+            android:text="LOW" />
+
+        <RadioButton
+            android:id="@+id/radioMedium"
+            style="@style/radioButton"
+            android:text="MEDIUM" />
+
+        <RadioButton
+            android:id="@+id/radioHigh"
+            style="@style/radioButton"
+            android:text="HIGH" />
+
+
+    </RadioGroup>
+
+
+
+    <TextView
+        android:id="@+id/memoLabel"
+        android:text="Memo"
+        style="@style/labelText"
+        android:layout_below="@+id/radioPriority"
+        />
+
+    <EditText
+        android:id="@+id/memoText"
+        android:background="@drawable/memo_bak"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/memoLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:inputType="textMultiLine"
+        android:text=""
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        android:gravity="left|top"
+        android:scrollbars="vertical"/>
+
+    <CheckBox
+        android:id="@+id/cbComplete"
+        style="@style/labelText"
+        android:layout_below="@+id/memoText"
+        android:text="MARK AS COMPLETE" />
+
+
 </RelativeLayout>

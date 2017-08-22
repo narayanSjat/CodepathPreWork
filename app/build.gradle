@@ -9,7 +9,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.list_row_items.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -26,6 +26,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'commons-io:commons-io:2.4'
+    compile 'com.android.support:appcompat-v7:23.2.0'
 
     testCompile 'junit:junit:4.12'
 }

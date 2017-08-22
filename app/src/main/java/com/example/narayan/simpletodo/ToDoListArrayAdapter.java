@@ -27,9 +27,9 @@ public class ToDoListArrayAdapter extends ArrayAdapter <Item> {
        Item item = getItem(position);
         if (convertView == null)
         {
-            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_row_items, parent, false);
         }
-        TextView tvItem= (TextView) convertView.findViewById(android.R.id.text1);
+        TextView tvItem= (TextView) convertView.findViewById(R.id.lvRowText);
         tvItem.setText(item.getName());
         return convertView;
     }

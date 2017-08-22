@@ -3,4 +3,9 @@
     <string name="add_label">ADD</string>
     <string name="add_item_hint_label">Add New Item</string>
     <string name="itemsTableName"></string>
+    <string name="frag_margin">10dp</string>
+    <string name="label_font">serif</string>
+    <string name="label_font_size">18sp</string>
+    <string name="input_font">serif</string>
+    <string name="input_font_size">14sp</string>
 </resources>
