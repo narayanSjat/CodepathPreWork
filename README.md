@@ -17,12 +17,12 @@ Time spent: 20 hours spent in total
 The following **required** functionality is completed:
 
 * User can successfully add items to list using Dailog Box detailings all available fields for an item by clicking on the add icon in the toolbar
-      - Checks for inavlid names and if the item already exists in the list
+    * Checks for inavlid names and if the item already exists in the list
 * User can edit or delte an item in the list by tapping and holding the item.
-      ** A Dialog Screen opens up that allows the user to edit each field
-	  ** An option is displayed to delete the item
-	  ** An option is displayed to mark the item as complete
-	  ** All the changes are reflected in the ToDo List. An image is displayed next to each item indicating its priority or whether it is completed
+    *  A Dialog Screen opens up that allows the user to edit each field
+    * An option is displayed to delete the item
+    * An option is displayed to mark the item as complete
+    * All the changes are reflected in the ToDo List. An image is displayed next to each item indicating its priority or whether it is completed
 * User can persist todo items  and retrieve them properly on app restart
 
 
@@ -31,28 +31,28 @@ The following **optional** features are implemented:
 * [ Done ] Persist the todo items [into SQLite](http://guides.codepath.com/android/Persisting-Data-to-the-Device#sqlite) instead of a text file
 * [ Done ] Improve style of the todo items in the list [using a custom adapter](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
 * [ Done ] Add support for completion due dates for todo items 
-           # Displayed in a dialog box upon selection (using long click)
+    * Displayed in a dialog box upon selection (using long click)
 * [ Done ] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) instead of new Activity for editing items
 * [ Done ] Add support for selecting the priority of each todo item (and display in listview item)
 * [ Done ] Tweak the style improving the UI / UX, play with colors, images or backgrounds
-           #Can be improved further
+    *  Can be improved further
 
 The following **additional** features are implemented:
 
 * [ Completed] Allow user to create multiple lists and switch between them as required 
-           # Would allow for better organization and user experience
-           # Allow the user to create a New List and Clearly mark which list is being displayed [done]
-           # Allow the user to delete lists [done]
-           # Allow the user to switch between lists [done]
-           # Persist Settings in database [done]
+    * Would allow for better organization and user experience
+    * Allow the user to create a New List and Clearly mark which list is being displayed [done]
+    * Allow the user to delete lists [done]
+    * Allow the user to switch between lists [done]
+    * Persist Settings in database [done]
 * [ BackLog ] Set up reminders for when due date is close
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
+[Link to GIF Walkthrough](http://i.imgur.com/KZmDBaQ.gif)
 
-<img src='http://i.imgur.com/KZmDBaQ.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
