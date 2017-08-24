@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundYellow">
+    <include
+        layout="@layout/toolbar_frag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_new_list_toolbar" />
+    <TextView
+        android:id="@+id/listLabel"
+        android:text="List Name"
+        style="@style/labelText"
+        android:layout_below="@+id/add_new_list_toolbar"
+        />
+
+    <EditText
+        android:id="@+id/listText"
+        style="@style/inputText"
+        android:text=""
+        android:layout_below="@+id/listLabel"
+
+        />
+
+
+</RelativeLayout>

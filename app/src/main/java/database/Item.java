@@ -11,6 +11,7 @@ public class Item {
     private String date; //TODO: Find a better structure to store date and time
     private String time;
     private boolean isComplete;
+    private String listName;
 
     public Item () {}
 
@@ -24,6 +25,8 @@ public class Item {
         this.date=item.getDate();
         this.time=item.getTime();
         this.memo=item.getMemo();
+        this.isComplete=item.getComplete();
+        this.listName=item.getListName();
     }
 
     /*
@@ -35,6 +38,7 @@ public class Item {
     public String getDate()     { return date;    }
     public String getTime()     { return time;    }
     public boolean getComplete() { return isComplete;    }
+    public String getListName()  {return listName;}
 
     /*
        Modifier Methods
@@ -45,6 +49,7 @@ public class Item {
     public void setDate(String date)           { this.date=date;   }
     public void setTime(String time)           { this.time=time;   }
     public void setComplete(boolean status)    { this.isComplete=status;   }
+    public void setListName(String listName)   { this.listName=listName;}
 
     /*
     * Checks if two Item object are equal (compares content)
@@ -56,6 +61,7 @@ public class Item {
                 item.getMemo().equals(this.memo)   &&
                 item.getDate().equals(this.date)   &&
                 item.getTime().equals(this.time)   &&
-                item.isComplete==this.isComplete);
+                item.isComplete==this.isComplete   &&
+                item.getListName().equals(this.listName));
     }
 }

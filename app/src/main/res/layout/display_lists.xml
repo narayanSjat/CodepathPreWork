@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+    <include
+        layout="@layout/toolbar_frag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lists_toolbar" />
+    <ListView
+        android:id="@+id/lvAllLists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundYellow"
+        android:layout_below="@id/lists_toolbar"
+        android:layout_margin="2dp"/>
+
+
+</RelativeLayout>

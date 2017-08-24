@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@color/backgroundYellow">
+    android:background="@drawable/list_item_background">
 
     <TextView
         android:id="@+id/lvRowText"

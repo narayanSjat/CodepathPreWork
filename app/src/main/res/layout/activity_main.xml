@@ -12,6 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <TextView
+        android:id="@+id/currListLabel"
+        android:text="No List Added"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/toolbarGrey"
+        android:fontFamily="serif"
+        android:textSize="14sp"
+        android:textColor="@color/backgroundYellow"
+        android:gravity="center"
+        android:layout_below="@+id/toolbar"
+        />
 
     <ListView
         android:id="@+id/lvItems"
@@ -19,10 +31,21 @@
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/currListLabel"
         android:background="@color/backgroundYellow"
         android:layout_margin="5dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"/>
+
+    <TextView android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundYellow"
+        android:gravity="center"
+        android:text="No Results"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/currListLabel"/>
 
 
 </RelativeLayout>

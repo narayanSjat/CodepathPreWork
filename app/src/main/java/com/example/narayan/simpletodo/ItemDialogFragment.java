@@ -1,18 +1,14 @@
 package com.example.narayan.simpletodo;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -21,7 +17,6 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import database.Item;
 
@@ -40,7 +35,7 @@ public class ItemDialogFragment extends DialogFragment implements DialongDataTra
     private RadioGroup priorityRadioGroup;
     private TextView etItemMemo;
     private CheckBox isCompleteCheck;
-    private ItemEditListener listener;
+    private DialogEditListener listener;
 
     private MODE mode;
 
@@ -69,7 +64,7 @@ public class ItemDialogFragment extends DialogFragment implements DialongDataTra
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.custom_edit_view, container);
         setCancelable(false);
-        listener = (ItemEditListener) getActivity();
+        listener = (DialogEditListener) getActivity();
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.frag_toolbar);
         if (mode==MODE.EDIT)
         {
