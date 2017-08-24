@@ -46,6 +46,7 @@ The following **additional** features are implemented:
     * Allow the user to switch between lists [done]
     * Persist Settings in database [done]
 * [ BackLog ] Set up reminders for when due date is close
+* See Other_extention_ideas.docx file for some other ideas
 
 ## Video Walkthrough
 
