@@ -112,8 +112,15 @@ public class MainActivity extends AppCompatActivity implements DialogEditListene
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==R.id.addNewItem)
         {
-            Item newItem=new Item();
-            showEditDailog(newItem, ItemDialogFragment.MODE.ADD);
+            if (currList==null) // check if no Lists are currently added
+            {
+                Toast.makeText(this,"Must add a list before adding an Item",Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Item newItem=new Item();
+                showEditDailog(newItem, ItemDialogFragment.MODE.ADD);
+            }
         }
         else if(item.getItemId()==R.id.displayLists)
         {
