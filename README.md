@@ -48,6 +48,10 @@ The following **additional** features are implemented:
 * [ BackLog ] Set up reminders for when due date is close
 * See Other_extention_ideas.docx file for some other ideas
 
+Bug Fix (After Submission Date)
+Discription: User allowed to add an item before adding a list. Leads to an error being displayed. App does not crash
+Fix: User shown an Instructional message that an Item can only be added after a list is created
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
