@@ -85,7 +85,7 @@ Adapter is an important interface in Java which acts as bridge between an Adapte
 ## Notes
 
 Describe any challenges encountered while building the app.
-I believe the initial setup was a little bit tedious. However after setup, the platform was easy to use and fun to develop on.
+I believe the initial setup was a little bit tedious. However after setup, the platform was easy to use and fun to develop on
 
 ## License
 
